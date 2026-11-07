@@ -70,7 +70,6 @@ export function assessNetwork({ downloadMbps: down, uploadMbps: up, latencyMs: r
     }
 
     const measured = down !== null && up !== null && rtt !== null;
-    if (!measured) warnings.push("Part of the connection test didn't finish, so we couldn't fully confirm it.");
 
     if (failures.length > 0) return { verdict: "fail", measured, reasons: failures };
     if (warnings.length > 0) return { verdict: "warn", measured, reasons: warnings };
