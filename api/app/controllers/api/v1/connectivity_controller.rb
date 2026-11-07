@@ -33,7 +33,7 @@ module Api
       # Reports the bytes actually received. The declared Content-Length is only
       # used to reject obviously oversized uploads early; it is never echoed back.
       def upload
-        return payload_too_large if request.content_length.to_i >= MAX_UPLOAD_BYTES
+        return payload_too_large if request.content_length.to_i > MAX_UPLOAD_BYTES
 
         received = read_capped(request.body)
         return payload_too_large if received > MAX_UPLOAD_BYTES
